@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { IOwner } from '@/interfaces/IOwner';
+import { IOwner } from '../interfaces/IOwner';
 
 
 export class Owner {
@@ -9,6 +9,7 @@ export class Owner {
     walletShort: string;
 
     constructor(owner?: IOwner) {
+        if (!owner) owner = {};
         this.id = owner.id
         this.wallet = owner.wallet
         this.walletShort = owner.walletShort

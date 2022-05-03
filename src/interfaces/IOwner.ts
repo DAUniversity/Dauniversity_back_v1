@@ -1,5 +1,5 @@
 export interface IOwner {
-    id: string;
-    wallet: string;
-    walletShort: string
+    id?: string;
+    wallet?: string;
+    walletShort?: string
 }
