@@ -1,6 +1,6 @@
 import { Noun } from '../models/NounsModel';
 import { Service } from 'typedi';
-import { getPartRandom, getRandomPrice, getOwner } from '../utils/general';
+import { getPartRandom, getRandomPrice, getOwner, getOfferors } from '../utils/general';
 import moment from 'moment';
 
 const MAX_ACCESSORIES = 137
@@ -28,14 +28,14 @@ export default class UserService {
                 hat: getPartRandom(MAX_HATS, FOLDER_HATS, day),
                 price: getRandomPrice(day),
                 owner: getOwner(day),
+                offerors: getOfferors(day, 5),
             }
         );
     }
     static getOldNouns(day: number, limit: number) {
         const result = {};
         for (let i = 0; i < limit; i++) {
-            const dayMoment = moment(day, 'YYYYMMDD')
-            const currentDay = parseInt(moment(dayMoment.subtract(i, 'days')).format('YYYYMMDD'));
+            const currentDay = parseInt(moment(moment(day, 'YYYYMMDD').subtract(i, 'days')).format('YYYYMMDD'));
             result[currentDay] = this.getNounForCurrentDay(currentDay);
         }
         return result;

@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { IOwner } from '@/interfaces/IOwner';
+import { IOfferor } from '../interfaces/IOfferor';
+import { IOwner } from '../interfaces/IOwner';
 import { INoun } from '../interfaces/INoun';
 
 
@@ -11,10 +12,12 @@ export class Noun {
     accessory: string;
     glass: string;
     hat: string;
-    price: string;
-    owner: IOwner; //
+    price: number;
+    owner: IOwner;
+    offerors: IOfferor[]
 
     constructor(noun?: INoun) {
+        if(!noun) noun = {};
         this.id = noun.id
         this.body = noun.body
         this.background = noun.background
@@ -23,6 +26,7 @@ export class Noun {
         this.hat = noun.hat
         this.price = noun.price
         this.owner = noun.owner
+        this.offerors = noun.offerors
     }
 
     public toJson(): object {
@@ -34,7 +38,8 @@ export class Noun {
             glass: this.glass,
             hat: this.hat,
             price: this.price,
-            owner: this.owner
+            owner: this.owner,
+            offerors: this.offerors
         };
     }
 
