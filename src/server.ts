@@ -4,6 +4,7 @@ import knex from "./db/knex";
 import logger from "morgan";
 import Debug from "debug";
 const debug = Debug("backend:server");
+import nounRouter from "./routers/v1/api/noun";
 
 class Server {
   private app;
@@ -20,6 +21,7 @@ class Server {
     debug("Cargando configuraciones iniciales...");
     this.app.use(bodyParser.urlencoded({ extended: true }));
     this.app.use(bodyParser.json({ limit: "1mb" })); // 100kb default
+    this.app.use(express.static('public'));
     this.app.use(logger("backendserver START :method :url"));
   }
 
@@ -36,6 +38,7 @@ class Server {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     router.use(require("./middleware/AuthMiddleware"));
     this.app.use("/v1/api", router);
+    this.app.use("/v1/api/noun", nounRouter);
   }
 
   private routerAuthConfig() {
