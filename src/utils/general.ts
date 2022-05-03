@@ -22,7 +22,7 @@ export function getOwner(day: number) {
   const result = new Owner({
     id: (getRandomPrice(day) + 4134) + '',
     wallet: '0x' + getRandomPrice(day) + getRandomPrice(day) + day + (day * 5),
-    walletShort: (day * 150).toString(36).replace(/[^a-z]+/g, '').substr(0, 5) + '.eth'
+    walletShort: (day * 1550).toString(36).replace(/[^a-z]+/g, '').substr(0, 5) + '.eth'
   });
   return result;
 }
@@ -36,8 +36,8 @@ export function getOfferors(day: number, limit: number) {
   for (let i = 0; i < limit; i++) {
     const randPrice = getRandomPrice(day) - (i + 2)
     result.push(new Offeror({
-      id: (day * 5) + '',
-      owner: getOwner((day*85) + i),
+      id: (Math.floor(day/3) + 1 * i) + '',
+      owner: getOwner((Math.floor(day/2) + i)),
       price: randPrice < 0 ? 0.1 : randPrice,
     }));
   }
