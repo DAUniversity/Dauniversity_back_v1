@@ -4,10 +4,10 @@ import moment from "moment";
 
 
 export function getRandomArbitrary(min: number, max: number, day: number) {
-  let result = day + max + 1;
-  while (result > max) {
+  let result = day + max;
+  while (result >= max) {
     result -= max;
-    if (result < min) result = min;
+    if (result <= min) result = min;
   }
   return result
   //return Math.floor(Math.random() * (max - min) + min);
@@ -27,8 +27,8 @@ export function getOwner(day: number) {
   return result;
 }
 
-export function getPartRandom(max: number, folder: string, day: number) {
-  return `/images/${folder}/${getRandomArbitrary(1, max, day)}.png`;
+export function getPartRandom(max: number, day: number) {
+  return getRandomArbitrary(0, max, day)
 }
 
 export function getOfferors(day: number, limit: number) {

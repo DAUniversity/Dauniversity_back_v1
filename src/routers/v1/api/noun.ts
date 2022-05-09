@@ -9,7 +9,7 @@ router.get('/:day', async (req, res) => {
     return res.status(400).end();
   }
   const day = parseInt(req.params.day)
-  const result = NounsService.getNounForCurrentDay(day)
+  const result = await NounsService.getNounForCurrentDay(day)
   return res.status(200).send(result);
 });
 
