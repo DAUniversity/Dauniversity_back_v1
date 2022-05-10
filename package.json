@@ -4,10 +4,14 @@
   "main": "dist/src/app.js",
   "scripts": {
     "build": "tsc",
-    "start": "npm run build && node dist/src/app.js",
-    "dev": "sudo rm -fr src/assets/image-data.json && ts-node src/scripts/encode.ts && npm run clean && nodemon --config nodemon.json src/server.ts",
+    "build-nouns": "ts-node src/scripts/encode.ts",
+    "start": "npm run init-nouns && npm run build && node dist/src/app.js",
+    "start-dev": "npm run build && node dist/src/app.js",
+    "dev": "npm run clean && nodemon --config nodemon.json src/server.ts",
+    "init-nouns": "npm run clean-nouns && npm run build-nouns",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "clean-nouns": "rm -fr src/assets/image-data.json"
   },
   "keywords": [],
   "author": "",
