@@ -4,7 +4,7 @@ import 'reflect-metadata';
 import Debug from "debug";
 const debug = Debug("backend:app");
 
-const port = parseInt(process.env.PORT || '8000');
+const port = parseInt(process.env.PORT || '4000');
 
 const starter = new server().start(port)
   .then(port => debug(`Running on port ${port}`))
